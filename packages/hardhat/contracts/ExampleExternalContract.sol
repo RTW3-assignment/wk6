@@ -9,4 +9,10 @@ contract ExampleExternalContract {
     completed = true;
   }
 
+  function recover(uint256 amount) public {
+    // payable(msg.sender).transfer(amount);
+
+    (bool sent, bytes memory data) = msg.sender.call{value: amount}("");
+    completed = false;
+  }
 }
